@@ -404,32 +404,64 @@
 <!-- CINEMA & MOVIE REVIEWS SECTION -->
 <section id="cinema">
   <h2 class="serif-title">Latest movie <i>reviews.</i></h2>
-  <p style="color:var(--grey); margin-bottom:30px;">Personal film journal and thoughts on cinema aesthetics, storytelling, and regional releases.</p>
+  <p style="color:var(--grey); margin-bottom:30px;">
+    Automated Letterboxd feed — updates automatically whenever I log a film.
+  </p>
 
-  <div class="movie-grid">
-    <div class="movie-card">
-      <div class="movie-poster">
-        <img src="https://via.placeholder.com/300x220?text=Telugu+Cinema+Analysis" alt="Movie Review">
-      </div>
-      <div class="movie-info">
-        <h4>Regional Cinema & Narrative Beats</h4>
-        <div class="movie-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-        <p class="movie-review-text">"Analyzing emotional arcs, high-impact world-building, and pacing in modern regional productions."</p>
-      </div>
-    </div>
-
-    <div class="movie-card">
-      <div class="movie-poster">
-        <img src="https://via.placeholder.com/300x220?text=Character+Arc+Study" alt="Movie Review">
-      </div>
-      <div class="movie-info">
-        <h4>Screenplay & Character Arcs</h4>
-        <div class="movie-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-        <p class="movie-review-text">"Exploring protagonist motivations, plot twists, and sound design execution."</p>
-      </div>
-    </div>
+  <div class="movie-grid" id="letterboxd-feed">
+    <!-- Dynamic reviews will render here automatically -->
+    <p style="color:var(--grey);">Loading latest reviews from Letterboxd...</p>
   </div>
 </section>
+
+<script>
+  // Dynamic Letterboxd Feed Fetcher
+  async function fetchLetterboxdReviews() {
+    const username = 'lokeshnidigonda';
+    const rssUrl = `https://letterboxd.com/${username}/rss/`;
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      const container = document.getElementById('letterboxd-feed');
+      container.innerHTML = '';
+
+      if (data.status === 'ok' && data.items.length > 0) {
+        // Take the top 4 recent reviews
+        data.items.slice(0, 4).forEach(item => {
+          // Extract image poster from description HTML
+          const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+          const posterUrl = imgMatch ? imgMatch[1] : 'https://via.placeholder.com/300x220?text=No+Poster';
+
+          // Extract clean text review
+          const cleanReview = item.description.replace(/<[^>]*>?/gm, '').trim();
+
+          const card = document.createElement('div');
+          card.className = 'movie-card';
+          card.innerHTML = `
+            <div class="movie-poster">
+              <img src="${posterUrl}" alt="${item.title}">
+            </div>
+            <div class="movie-info">
+              <h4>${item.title}</h4>
+              <p class="movie-review-text">"${cleanReview.substring(0, 150)}..."</p>
+              <a href="${item.link}" target="_blank" style="color:var(--gold); font-size:0.75rem; font-weight:700; display:inline-block; margin-top:8px;">Read Full Review on Letterboxd →</a>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } else {
+        container.innerHTML = '<p style="color:var(--grey);">No public reviews found yet.</p>';
+      }
+    } catch (error) {
+      console.error('Error fetching Letterboxd feed:', error);
+      document.getElementById('letterboxd-feed').innerHTML = '<p style="color:var(--grey);">Unable to load live Letterboxd feed.</p>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchLetterboxdReviews);
+</script>
 
 <!-- CONTACT -->
 <section id="contact">
