@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nidigonda Lokesh | Data Analyst Portfolio</title>
+<style>
+  :root{
+    --navy:#0b0f19;
+    --navy-light:#121828;
+    --navy-card:#161d2f;
+    --gold:#ffc72c;
+    --gold-dim:#ffc72c33;
+    --white:#f5f6fa;
+    --grey:#9aa3b8;
+    --border:#242c42;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy);
+    color:var(--white);
+    font-family:'Segoe UI',Arial,sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;height:auto;display:block;}
+  section{padding:100px 8%;}
+  .eyebrow{
+    display:inline-block;
+    padding:6px 18px;
+    border:1px solid var(--gold);
+    border-radius:999px;
+    color:var(--gold);
+    font-size:.75rem;
+    letter-spacing:2px;
+    font-weight:600;
+    text-transform:uppercase;
+    margin-bottom:20px;
+  }
+  h1,h2,h3{font-weight:800;}
+  .section-title{
+    font-size:2.2rem;
+    margin-bottom:12px;
+    letter-spacing:.5px;
+  }
+  .section-sub{
+    color:var(--grey);
+    max-width:600px;
+    margin-bottom:50px;
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 6%;
+    background:rgba(11,15,25,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    transition:padding .3s ease;
+  }
+  .logo{
+    font-weight:800;
+    font-size:1rem;
+    letter-spacing:1px;
+  }
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:34px;}
+  .nav-links a{
+    font-size:.85rem;
+    font-weight:600;
+    letter-spacing:.5px;
+    color:var(--grey);
+    position:relative;
+    padding-bottom:4px;
+    transition:color .25s;
+  }
+  .nav-links a:hover{color:var(--white);}
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:2px;
+    background:var(--gold);
+    transition:width .25s;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1100;}
+  .burger span{width:24px;height:2px;background:var(--white);}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    padding-top:140px;
+    position:relative;
+  }
+  .hero::before{
+    content:'';
+    position:absolute;
+    top:-10%;right:-10%;
+    width:600px;height:600px;
+    background:radial-gradient(circle,var(--gold-dim) 0%, transparent 70%);
+    z-index:0;
+  }
+  .hero-text{flex:1;min-width:300px;position:relative;z-index:1;}
+  .hero-text h1{
+    font-size:3.4rem;
+    line-height:1.1;
+    margin-bottom:20px;
+    letter-spacing:.5px;
+  }
+  .hero-text .sub{
+    color:var(--grey);
+    font-size:1.15rem;
+    max-width:480px;
+    margin-bottom:36px;
+  }
+  .btn-row{display:flex;gap:18px;flex-wrap:wrap;}
+  .btn{
+    padding:14px 30px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.9rem;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:transform .2s ease, box-shadow .2s ease;
+    display:inline-block;
+  }
+  .btn:hover{transform:translateY(-3px);}
+  .btn-solid{background:var(--gold);color:var(--navy);}
+  .btn-solid:hover{box-shadow:0 10px 25px var(--gold-dim);}
+  .btn-outline{border-color:var(--gold);color:var(--gold);}
+  .btn-outline:hover{background:var(--gold);color:var(--navy);}
+
+  .hero-img-wrap{
+    flex:0 0 320px;
+    width:320px;
+    height:320px;
+    border-radius:50%;
+    border:6px solid var(--gold);
+    padding:6px;
+    position:relative;
+    z-index:1;
+    overflow:hidden;
+  }
+  .hero-img{
+    width:100%;height:100%;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:top center;
+  }
+
+  /* ABOUT + SKILLS */
+  .about-bio{
+    max-width:800px;
+    color:var(--grey);
+    font-size:1.05rem;
+    margin-bottom:60px;
+  }
+  .skill-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .skill-card{
+    background:var(--navy-card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:28px 22px;
+    transition:transform .25s, border-color .25s;
+  }
+  .skill-card:hover{
+    transform:translateY(-6px);
+    border-color:var(--gold);
+  }
+  .skill-card h3{
+    color:var(--gold);
+    font-size:1rem;
+    margin-bottom:16px;
+  }
+  .skill-card ul li{
+    color:var(--white);
+    font-size:.88rem;
+    margin-bottom:10px;
+    padding-left:16px;
+    position:relative;
+  }
+  .skill-card ul li::before{
+    content:'';
+    position:absolute;
+    left:0;top:8px;
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+
+  /* BACKGROUND */
+  .bg-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+  }
+  .bg-card{
+    background:var(--navy-card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:34px;
+  }
+  .bg-card h3{
+    color:var(--gold);
+    font-size:.85rem;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .edu-block strong{display:block;font-size:1.05rem;margin-bottom:6px;}
+  .edu-block .meta{color:var(--grey);font-size:.9rem;}
+  .cert-list li{
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+    font-size:.92rem;
+  }
+  .cert-list li:last-child{border-bottom:none;}
+  .cert-list li b{color:var(--gold);display:block;font-size:.78rem;letter-spacing:1px;margin-bottom:3px;}
+
+  /* PROJECTS */
+  .project-card{
+    background:var(--navy-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:40px;
+  }
+  .project-banner-wrap{
+    width:100%;
+    max-height:360px;
+    overflow:hidden;
+    cursor:pointer;
+    border-bottom:1px solid var(--border);
+    position:relative;
+  }
+  .project-banner-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .3s ease;
+  }
+  .project-banner-wrap:hover img{
+    transform:scale(1.02);
+  }
+  .project-sub-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--border);
+  }
+  .project-sub-wrap{
+    height:180px;
+    overflow:hidden;
+    cursor:pointer;
+    position:relative;
+  }
+  .project-sub-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .3s ease;
+  }
+  .project-sub-wrap:hover img{
+    transform:scale(1.04);
+  }
+
+  .project-body{padding:32px;}
+  .project-tag{
+    display:inline-block;
+    color:var(--gold);
+    font-size:.75rem;
+    letter-spacing:2px;
+    font-weight:700;
+    margin-bottom:10px;
+  }
+  .project-body h3{font-size:1.4rem;margin-bottom:14px;}
+  .project-body p{color:var(--grey);margin-bottom:20px;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .pill{
+    background:var(--gold-dim);
+    color:var(--gold);
+    border:1px solid var(--gold);
+    border-radius:999px;
+    padding:5px 14px;
+    font-size:.75rem;
+    font-weight:600;
+  }
+  .impact-row{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:20px;}
+  .impact-row div{text-align:left;}
+  .impact-row b{display:block;color:var(--gold);font-size:1.1rem;}
+  .impact-row span{color:var(--grey);font-size:.75rem;}
+  .project-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .project-actions .btn{padding:10px 22px;font-size:.8rem;}
+
+  /* CONTACT */
+  .contact-wrap{text-align:center;}
+  .contact-wrap h2{font-size:2.4rem;margin-bottom:14px;}
+  .contact-wrap p.lead{color:var(--grey);margin-bottom:50px;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .contact-item{
+    background:var(--navy-card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:24px;
+    transition:transform .25s, border-color .25s;
+  }
+  .contact-item:hover{transform:translateY(-5px);border-color:var(--gold);}
+  .contact-item b{display:block;color:var(--gold);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;}
+  .contact-item span{font-size:.9rem;word-break:break-word;}
+
+  footer{
+    text-align:center;
+    padding:30px;
+    color:var(--grey);
+    font-size:.8rem;
+    border-top:1px solid var(--border);
+  }
+
+  /* LIGHTBOX MODAL */
+  .lightbox{
+    position:fixed;inset:0;
+    background:rgba(11,15,25,.95);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:2000;
+    padding:20px;
+  }
+  .lightbox.active{display:flex;}
+  .lightbox-content{
+    position:relative;
+    max-width:90%;
+    max-height:90vh;
+  }
+  .lightbox-content img{
+    max-width:100%;
+    max-height:85vh;
+    border:2px solid var(--gold);
+    border-radius:12px;
+    box-shadow:0 0 30px rgba(0,0,0,.8);
+  }
+  .lightbox-close{
+    position:absolute;
+    top:-40px;right:0;
+    color:var(--white);
+    font-size:2rem;
+    cursor:pointer;
+    line-height:1;
+  }
+
+  @media(max-width:900px){
+    .skill-grid{grid-template-columns:repeat(2,1fr);}
+    .bg-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr 1fr;}
+    .project-sub-row{grid-template-columns:1fr;}
+  }
+  @media(max-width:700px){
+    .nav-links{
+      position:fixed;
+      top:0;right:-100%;
+      width:70%;
+      height:100vh;
+      background:var(--navy-light);
+      flex-direction:column;
+      justify-content:center;
+      align-items:flex-start;
+      padding:40px;
+      gap:26px;
+      transition:right .3s ease;
+      border-left:1px solid var(--border);
+    }
+    .nav-links.open{right:0;}
+    .burger{display:flex;}
+    .hero{flex-direction:column-reverse;text-align:center;padding-top:120px;}
+    .hero-text .sub{margin:0 auto 30px;}
+    .btn-row{justify-content:center;}
+    .hero-img-wrap{width:220px;height:220px;flex-basis:220px;}
+    .hero-text h1{font-size:2.4rem;}
+    section{padding:70px 6%;}
+    .skill-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">NIDIGONDA LOKESH <span>| DATA ANALYST</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About Me</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <span class="eyebrow">Data Analyst Portfolio</span>
+    <h1>NIDIGONDA LOKESH</h1>
+    <p class="sub">I help businesses unlock actionable insights through data.</p>
+    <div class="btn-row">
+      <a href="https://github.com/lokeshnidigonda" target="_blank" class="btn btn-solid">GitHub Profile</a>
+      <a href="#projects" class="btn btn-outline">Explore Projects</a>
+    </div>
+  </div>
+  <div class="hero-img-wrap">
+    <img src="BlackSUIT.png" alt="Nidigonda Lokesh" class="hero-img" onerror="this.src='https://via.placeholder.com/320?text=Upload+BlackSUIT.png'">
+  </div>
+</section>
+
+<!-- ABOUT + SKILLS -->
+<section id="about">
+  <span class="eyebrow">About Me</span>
+  <h2 class="section-title">Background & Skill Matrix</h2>
+  <p class="about-bio">Data Analyst &amp; BI Specialist proficient in SQL, Power BI, Excel, and Python. Experienced in relational database design, ETL workflows, building interactive operational dashboards, and communicating business trends.</p>
+
+  <div id="skills" class="skill-grid">
+    <div class="skill-card">
+      <h3>Programming & Databases</h3>
+      <ul>
+        <li>SQL (MySQL)</li>
+        <li>Python</li>
+        <li>Schema Design</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Data Analytics & BI Tools</h3>
+      <ul>
+        <li>Power BI (DAX)</li>
+        <li>Microsoft Excel (Pivot Tables, XLOOKUP)</li>
+        <li>Google Sheets</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Analytical Methods</h3>
+      <ul>
+        <li>Exploratory Data Analysis (EDA)</li>
+        <li>KPI Tracking</li>
+        <li>Cohort Analysis</li>
+        <li>Trend Modeling</li>
+      </ul>
+    </div>
+    <div class="skill-card">
+      <h3>Developer Tools</h3>
+      <ul>
+        <li>VS Code</li>
+        <li>Jupyter Notebook</li>
+        <li>Git</li>
+        <li>GitHub</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION & BACKGROUND -->
+<section id="background">
+  <span class="eyebrow">Background</span>
+  <h2 class="section-title">Education & Certifications</h2>
+  <p class="section-sub">Academic foundation and verified credentials.</p>
+
+  <div class="bg-grid">
+    <div class="bg-card">
+      <h3>Education</h3>
+      <div class="edu-block">
+        <strong>Marri Laxman Reddy Institute of Technology and Management (MLRITM)</strong>
+        <div class="meta">B.Tech in Computer Science and Engineering (Data Science)</div>
+        <div class="meta">2022 – 2026 &nbsp;|&nbsp; CGPA: 7.59 / 10.0</div>
+      </div>
+    </div>
+    <div class="bg-card">
+      <h3>Certifications & Achievements</h3>
+      <ul class="cert-list">
+        <li><b>HackerRank</b>SQL (Intermediate) & Python Verified Badges</li>
+        <li><b>IBM / Cognitive Class</b>Python 101 for Data Science</li>
+        <li><b>Kaggle</b>Intro to SQL & Python Course Certificates</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <span class="eyebrow">Notable Projects</span>
+  <h2 class="section-title">Case Studies</h2>
+  <p class="section-sub">Selected work spanning BI dashboards, SQL analytics, and market research.</p>
+
+  <!-- PROJECT 01 -->
+  <div class="project-card">
+    <div class="project-banner-wrap" onclick="openLightbox('Dh.png')">
+      <img src="Dh.png" alt="Hostel Operations Financial Dashboard" onerror="this.src='https://via.placeholder.com/800x360?text=Upload+Dh.png'">
+    </div>
+    <div class="project-sub-row">
+      <div class="project-sub-wrap" onclick="openLightbox('dh2.png')">
+        <img src="dh2.png" alt="Room Allocation View" onerror="this.src='https://via.placeholder.com/400x180?text=Upload+dh2.png'">
+      </div>
+      <div class="project-sub-wrap" onclick="openLightbox('dh3.png')">
+        <img src="dh3.png" alt="Operational Costs View" onerror="this.src='https://via.placeholder.com/400x180?text=Upload+dh3.png'">
+      </div>
+    </div>
+    <div class="project-body">
+      <span class="project-tag">PROJECT 01</span>
+      <h3>Hostel Operations & Financial Portal</h3>
+      <p>An end-to-end operational portal tracking monthly rent collection, bed occupancy rates (76% capacity metrics), and utility expense trends to optimize facility management.</p>
+      <div class="pill-row">
+        <span class="pill">Power BI</span>
+        <span class="pill">DAX</span>
+        <span class="pill">Excel</span>
+      </div>
+      <div class="pill-row">
+        <span class="pill">KPI Tracking</span>
+        <span class="pill">Operational Cost Modeling</span>
+        <span class="pill">Defaulter Trend Analysis</span>
+      </div>
+      <div class="project-actions">
+        <a href="https://github.com/lokeshnidigonda" target="_blank" class="btn btn-solid">GitHub Repo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 02 -->
+  <div class="project-card">
+    <div class="project-banner-wrap" onclick="openLightbox('OLISTDASH.png')">
+      <img src="OLISTDASH.png" alt="Brazilian E-Commerce Dashboard" onerror="this.src='https://via.placeholder.com/800x360?text=Upload+OLISTDASH.png'">
+    </div>
+    <div class="project-body">
+      <span class="project-tag">PROJECT 02</span>
+      <h3>Brazilian E-Commerce Sales & Supply Chain Analytics</h3>
+      <p>Analyzed over 99K customer orders using MySQL multi-table joins, subqueries, and aggregations. Built an executive dashboard highlighting sales trends across states, payment category breakdowns, and top product categories.</p>
+      <div class="pill-row">
+        <span class="pill">SQL (MySQL)</span>
+        <span class="pill">Power BI</span>
+      </div>
+      <div class="impact-row">
+        <div><b>R$ 13.59M</b><span>Revenue Analyzed</span></div>
+        <div><b>99K</b><span>Orders</span></div>
+        <div><b>33K</b><span>Products</span></div>
+      </div>
+      <div class="project-actions">
+        <a href="https://github.com/lokeshnidigonda" target="_blank" class="btn btn-solid">GitHub Repo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 03 -->
+  <div class="project-card">
+    <div class="project-sub-row">
+      <div class="project-sub-wrap" style="height:240px;" onclick="openLightbox('dahboardLuke1.png')">
+        <img src="dahboardLuke1.png" alt="Salary Dashboard View 1" onerror="this.src='https://via.placeholder.com/400x240?text=Upload+dahboardLuke1.png'">
+      </div>
+      <div class="project-sub-wrap" style="height:240px;" onclick="openLightbox('Dashboard2luke.jpg')">
+        <img src="Dashboard2luke.jpg" alt="Salary Dashboard View 2" onerror="this.src='https://via.placeholder.com/400x240?text=Upload+Dashboard2luke.jpg'">
+      </div>
+    </div>
+    <div class="project-body">
+      <span class="project-tag">PROJECT 03 &middot; PRACTICE WORK</span>
+      <h3>Global Data Industry Salary & Job Market Dashboard</h3>
+      <p>Interactive salary exploration dashboard evaluating global tech job market trends using DAX drill-through filters and geospatial distribution mapping.</p>
+      <div class="pill-row">
+        <span class="pill">Power BI</span>
+        <span class="pill">DAX</span>
+        <span class="pill">Excel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-wrap">
+    <span class="eyebrow">Get In Touch</span>
+    <h2>Let's connect and work together!</h2>
+    <p class="lead">Open to Data Analyst, BI Analyst, and Python Developer roles.</p>
+    <div class="contact-grid">
+      <a class="contact-item" href="mailto:lokeshnidigonda@gmail.com">
+        <b>Email</b><span>lokeshnidigonda@gmail.com</span>
+      </a>
+      <a class="contact-item" href="https://wa.me/916281942161" target="_blank">
+        <b>Phone / WhatsApp</b><span>+91 6281942161</span>
+      </a>
+      <div class="contact-item">
+        <b>Location</b><span>Hyderabad, India</span>
+      </div>
+      <a class="contact-item" href="https://linkedin.com/in/lokeshnidigonda" target="_blank">
+        <b>LinkedIn</b><span>linkedin.com/in/lokeshnidigonda</span>
+      </a>
+      <a class="contact-item" href="https://github.com/lokeshnidigonda" target="_blank">
+        <b>GitHub</b><span>github.com/lokeshnidigonda</span>
+      </a>
+      <a class="contact-item" href="https://x.com/LokeshCooks" target="_blank">
+        <b>Twitter / X</b><span>@LokeshCooks</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; 2026 Nidigonda Lokesh. All rights reserved.</footer>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightboxImg" src="" alt="Full Resolution Preview">
+  </div>
+</div>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  function openLightbox(imgSrc){
+    document.getElementById('lightboxImg').src = imgSrc;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if(e.target.id === 'lightbox') closeLightbox();
+  });
+</script>
+
+</body>
+</html>
