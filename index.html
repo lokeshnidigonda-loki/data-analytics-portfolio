@@ -8,18 +8,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --bg: #F7F4EB;
+    --bg: #F8FAFC;
     --card-bg: #FFFFFF;
-    --text-main: #1A1A1A;
-    --text-muted: #666666;
-    --accent: #C89551;
-    --accent-light: #F2E8D5;
-    --border: #E5DFC9;
-    --dark-btn: #1A1A1A;
+    --text-main: #0F172A;
+    --text-muted: #64748B;
+    --accent: #2563EB;
+    --accent-light: #EFF6FF;
+    --border: #E2E8F0;
+    --dark-btn: #0F172A;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +27,7 @@
   body {
     background-color: var(--bg);
     color: var(--text-main);
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
   }
@@ -40,136 +40,145 @@
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 8%;
-    background: rgba(247, 244, 235, 0.9);
+    padding: 18px 8%;
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
   }
-  .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; }
+  .logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; color: var(--text-main); }
   .logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
-  .nav-links a:hover { color: var(--text-main); }
+  .nav-links a:hover { color: var(--accent); }
   .hire-btn {
-    background: var(--dark-btn); color: #FFF !important;
-    padding: 10px 22px; border-radius: 999px; font-weight: 700 !important;
+    background: var(--accent); color: #FFF !important;
+    padding: 10px 22px; border-radius: 8px; font-weight: 700 !important;
   }
 
   /* HERO SECTION */
   .hero {
-    min-height: 100vh; padding: 140px 8% 60px;
+    min-height: 90vh; padding: 140px 8% 60px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 40px; position: relative;
+    background: linear-gradient(rgba(248, 250, 252, 0.92), rgba(248, 250, 252, 0.95)), url('BackGroundImage.png') center/cover no-repeat;
   }
   .hero-left { flex: 1.2; max-width: 650px; }
   .eyebrow-tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px;
     text-transform: uppercase; color: var(--accent);
-    margin-bottom: 20px;
-  }
-  .eyebrow-tag::before {
-    content: ''; width: 20px; height: 2px; background: var(--accent);
+    margin-bottom: 16px;
+    background: var(--accent-light); padding: 6px 14px; border-radius: 20px;
   }
 
   .hero-title {
-    font-size: 4.2rem; font-weight: 800; line-height: 1.05;
-    letter-spacing: -2px; margin-bottom: 24px; color: var(--text-main);
+    font-size: 3.8rem; font-weight: 800; line-height: 1.1;
+    letter-spacing: -1.5px; margin-bottom: 20px; color: var(--text-main);
   }
-  .hero-title span {
-    color: var(--accent);
-    font-family: 'Instrument Serif', serif;
-    font-weight: 400; font-style: italic;
-  }
+  .hero-title span { color: var(--accent); }
 
   .hero-sub {
     font-size: 1.15rem; color: var(--text-muted); font-weight: 500;
-    margin-bottom: 36px; max-width: 520px;
+    margin-bottom: 32px; max-width: 540px;
   }
 
-  .btn-group { display: flex; gap: 16px; align-items: center; }
+  .btn-group { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
   .btn-main {
-    background: var(--dark-btn); color: #FFF;
-    padding: 14px 32px; border-radius: 999px; font-weight: 700;
-    font-size: 0.95rem; transition: transform 0.2s;
+    background: var(--accent); color: #FFF;
+    padding: 14px 28px; border-radius: 8px; font-weight: 700;
+    font-size: 0.95rem; transition: transform 0.2s; display: inline-flex; align-items: center; gap: 8px;
   }
   .btn-main:hover { transform: translateY(-2px); }
   .btn-sec {
-    background: transparent; color: var(--text-main);
-    padding: 14px 32px; border-radius: 999px; font-weight: 700;
-    font-size: 0.95rem; border: 1px solid var(--border);
+    background: #FFF; color: var(--text-main);
+    padding: 14px 28px; border-radius: 8px; font-weight: 700;
+    font-size: 0.95rem; border: 1px solid var(--border); display: inline-flex; align-items: center; gap: 8px;
   }
 
-  /* HERO RIGHT IMAGE STYLING */
+  /* HERO PORTRAIT */
   .hero-right { flex: 0.9; position: relative; display: flex; justify-content: center; }
   .portrait-card {
-    position: relative; width: 340px; height: 420px;
-    background: #EADECA; border-radius: 30px;
-    border: 2px solid var(--border); overflow: hidden;
+    position: relative; width: 320px; height: 390px;
+    background: #FFF; border-radius: 20px;
+    border: 1px solid var(--border); overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   }
   .portrait-card img {
     width: 100%; height: 100%; object-fit: cover; object-position: top center;
   }
   .status-badge {
-    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: #FFF; padding: 8px 18px; border-radius: 999px;
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    background: #FFF; padding: 8px 16px; border-radius: 20px;
     border: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
-    font-size: 0.8rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    font-size: 0.8rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     white-space: nowrap;
   }
   .status-dot { width: 8px; height: 8px; background: #22C55E; border-radius: 50%; }
 
   /* SECTIONS */
-  section { padding: 90px 8%; }
-  .sec-heading { font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 40px; }
+  section { padding: 80px 8%; }
+  .sec-heading { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 36px; }
 
   /* CARDS GRID */
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
   
   .card-box {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 28px;
+    border-radius: 14px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);
   }
-  .card-box h3 { font-size: 1.1rem; margin-bottom: 12px; }
+  .card-box h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--accent); }
+  .card-box h4 { font-size: 0.95rem; color: var(--text-main); font-weight: 700; margin-bottom: 6px; }
   .card-box p { color: var(--text-muted); font-size: 0.9rem; }
 
-  /* PROJECT CARDS */
+  /* ANALYTICS CASE STUDY CARDS */
   .project-card {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 24px; overflow: hidden; margin-bottom: 30px;
+    border-radius: 16px; overflow: hidden; margin-bottom: 36px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
   }
-  .project-img { width: 100%; height: 320px; object-fit: cover; }
-  .project-content { padding: 32px; }
+  .project-card-img {
+    width: 100%; height: 360px; object-fit: cover; border-bottom: 1px solid var(--border);
+  }
+  .project-card-body { padding: 32px; }
+  .project-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; color: var(--text-main); }
+  .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+  .pill {
+    background: var(--accent-light); color: var(--accent);
+    border: 1px solid rgba(37, 99, 235, 0.2); border-radius: 6px;
+    padding: 4px 12px; font-size: 0.78rem; font-weight: 700;
+  }
 
-  /* CINEMA REVIEWS */
-  .movie-card {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 20px;
+  /* GALLERY GRID FOR DASHBOARDS */
+  .dashboard-gallery {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px;
+  }
+  .dashboard-gallery img {
+    border-radius: 8px; border: 1px solid var(--border); height: 160px; object-fit: cover;
   }
 
   footer {
-    text-align: center; padding: 40px; color: var(--text-muted);
-    font-size: 0.85rem; border-top: 1px solid var(--border);
+    text-align: center; padding: 36px; color: var(--text-muted);
+    font-size: 0.85rem; border-top: 1px solid var(--border); background: #FFF;
   }
 
   @media(max-width: 900px) {
     .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-    .hero-title { font-size: 3rem; }
-    .grid-4, .grid-2 { grid-template-columns: 1fr; }
+    .hero-title { font-size: 2.8rem; }
+    .grid-4, .grid-3, .grid-2, .dashboard-gallery { grid-template-columns: 1fr; }
     .hero-left { max-width: 100%; }
-    .eyebrow-tag { justify-content: center; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Lokesh<span>.</span></div>
+  <div class="logo">Lokesh<span> Analytics</span></div>
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#cinema">Cinema</a>
+    <a href="#about">Capabilities</a>
+    <a href="#projects">Case Studies</a>
+    <a href="#education">Education</a>
     <a href="#contact">Contact</a>
     <a href="mailto:lokeshnidigonda@gmail.com" class="hire-btn">Hire Me</a>
   </div>
@@ -178,12 +187,12 @@
 <!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-left">
-    <div class="eyebrow-tag">Nidigonda Lokesh — Open to Opportunities</div>
-    <h1 class="hero-title">I build data pipelines — and dashboards that <span>think.</span></h1>
-    <p class="hero-sub">Data Analyst & BI Specialist turning raw relational datasets into actionable executive insights through SQL, Power BI, and Python.</p>
+    <div class="eyebrow-tag">Nidigonda Lokesh — Data Analyst & BI Specialist</div>
+    <h1 class="hero-title">I turn complex data into <span>actionable business insights.</span></h1>
+    <p class="hero-sub">Specialized in SQL database querying, Power BI interactive dashboard design, data modeling, and exploratory data analysis using Python.</p>
     <div class="btn-group">
-      <a href="#projects" class="btn-main">View My Work</a>
-      <a href="#contact" class="btn-sec">Get in Touch</a>
+      <a href="https://github.com/lokeshnidigonda-loki/SQL-PROJECT1" target="_blank" class="btn-main"><i class="fab fa-github"></i> View SQL Analytics Project</a>
+      <a href="https://github.com/lokeshnidigonda-loki/hostel-operations-PowerBi-dashboard" target="_blank" class="btn-sec"><i class="fas fa-chart-bar"></i> View Power BI Dashboards</a>
     </div>
   </div>
 
@@ -197,109 +206,112 @@
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ANALYTICS CAPABILITIES -->
 <section id="about">
-  <h2 class="sec-heading">Technical Capabilities</h2>
+  <h2 class="sec-heading">Analytics Stack & Core Skills</h2>
   <div class="grid-4">
     <div class="card-box">
       <h3>Databases & SQL</h3>
-      <p>MySQL query optimization, schema design, subqueries, complex joins, data pipelines.</p>
+      <p>MySQL query optimization, complex multi-table JOINs, aggregations, schema design, and ETL concepts.</p>
     </div>
     <div class="card-box">
       <h3>Business Intelligence</h3>
-      <p>Power BI dashboards, DAX calculations, interactive operational tracking reports.</p>
+      <p>Power BI dashboard design, DAX calculated measures, data modeling, and operational KPI tracking reports.</p>
     </div>
     <div class="card-box">
       <h3>Data Science Tools</h3>
-      <p>Python, Pandas, NumPy, Exploratory Data Analysis (EDA), Cohort Analysis.</p>
+      <p>Python, Pandas, NumPy, Exploratory Data Analysis (EDA), Matplotlib, and quantitative modeling.</p>
     </div>
     <div class="card-box">
-      <h3>Developer Tools</h3>
-      <p>VS Code, Jupyter Notebook, Git, GitHub, LeetCode problem solving.</p>
+      <h3>Spreadsheets & Tools</h3>
+      <p>Microsoft Excel (Pivot Tables, VLOOKUP, XLOOKUP), Git, GitHub, Jupyter Notebook, VS Code.</p>
     </div>
   </div>
 </section>
 
-<!-- FEATURED PROJECTS -->
+<!-- FEATURED DATA ANALYTICS CASE STUDIES -->
 <section id="projects">
-  <h2 class="sec-heading">Selected Case Studies</h2>
+  <h2 class="sec-heading">Featured Data Analytics Case Studies</h2>
   
+  <!-- CASE STUDY 1: OLIST E-COMMERCE -->
   <div class="project-card">
-    <img src="Dh.png" class="project-img" alt="Hostel Portal">
-    <div class="project-content">
-      <h3>Hostel Operations & Financial Portal (Power BI)</h3>
-      <p>End-to-end 3-page operational portal tracking rent collection, 76% bed occupancy capacity metrics, and utility expense trends.</p>
-      <br>
-      <a href="https://github.com/lokeshnidigonda" target="_blank" class="btn-main">View GitHub Repo</a>
+    <img src="OLISTDASH.png" class="project-card-img" alt="Brazilian E-Commerce Analytics Dashboard">
+    <div class="project-card-body">
+      <div class="pill-row">
+        <span class="pill">SQL (MySQL)</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">Data Modeling</span>
+        <span class="pill">Relational Schema</span>
+      </div>
+      <h3>Brazilian E-Commerce Sales Analytics (Olist Dataset)</h3>
+      <p style="color:var(--text-muted); margin-bottom:16px;">
+        Engineered advanced SQL queries in MySQL using multi-table JOINs and aggregations to analyze sales performance across 99K+ orders. Constructed an interactive Power BI dashboard tracking $13.59M Revenue, 99K Orders, and 96K Customers to highlight regional sales trends, top product categories, and payment dynamics.
+      </p>
+      <a href="https://github.com/lokeshnidigonda-loki/SQL-PROJECT1" target="_blank" class="btn-main"><i class="fab fa-github"></i> View SQL Repository</a>
     </div>
   </div>
 
+  <!-- CASE STUDY 2: HOSTEL OPERATIONS -->
   <div class="project-card">
-    <img src="OLISTDASH.png" class="project-img" alt="E-Commerce Sales">
-    <div class="project-content">
-      <h3>Brazilian E-Commerce Sales Analytics (SQL + Power BI)</h3>
-      <p>Queried 99K+ customer orders using MySQL multi-table joins and aggregations to construct executive dashboards analyzing R$ 13.59M in revenue.</p>
-      <br>
-      <a href="https://github.com/lokeshnidigonda" target="_blank" class="btn-main">View SQL Script</a>
+    <img src="Dh.png" class="project-card-img" alt="Hostel Operations Power BI Dashboard">
+    <div class="project-card-body">
+      <div class="pill-row">
+        <span class="pill">Power BI</span>
+        <span class="pill">DAX Measures</span>
+        <span class="pill">Data Visualization</span>
+        <span class="pill">Operations Reporting</span>
+      </div>
+      <h3>Hostel Operations & Financial Management Dashboard</h3>
+      <p style="color:var(--text-muted); margin-bottom:16px;">
+        Designed an interactive 3-page operational Power BI portal to track room occupancy rates, rent collections, and utility expense trends, streamlining daily administrative decision-making.
+      </p>
+
+      <!-- GALLERY OF DASHBOARD VIEWS -->
+      <div class="dashboard-gallery">
+        <img src="dahboardLuke1.png" alt="Dashboard Page 1">
+        <img src="dh2.png" alt="Dashboard Page 2">
+        <img src="dh3.png" alt="Dashboard Page 3">
+      </div>
+
+      <a href="https://github.com/lokeshnidigonda-loki/hostel-operations-PowerBi-dashboard" target="_blank" class="btn-main" style="margin-top:20px;"><i class="fab fa-github"></i> View Power BI Repository</a>
     </div>
   </div>
 </section>
 
-<!-- AUTOMATED LETTERBOXD FEED -->
-<section id="cinema">
-  <h2 class="sec-heading">Latest Cinema <i>Reviews</i></h2>
-  <div class="grid-2" id="letterboxd-feed">
-    <p>Loading live reviews from Letterboxd...</p>
+<!-- EDUCATION SECTION -->
+<section id="education">
+  <h2 class="sec-heading">Education</h2>
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>2022 — 2026</h3>
+      <h4>B.Tech, CSE (Data Science)</h4>
+      <p><b>Marri Laxman Reddy Institute of Technology and Management (MLRITM)</b>, Hyderabad[cite: 1]<br>CGPA: 7.59 / 10.0[cite: 1]</p>
+    </div>
+    <div class="card-box">
+      <h3>2020 — 2022</h3>
+      <h4>Intermediate (MPC)</h4>
+      <p><b>Sri Chaitanya Junior College</b>, Hyderabad[cite: 1]<br>Percentage: 96.0%[cite: 1]</p>
+    </div>
+    <div class="card-box">
+      <h3>2019 — 2020</h3>
+      <h4>SSC (Secondary School)</h4>
+      <p><b>Zilla Parishad High School</b>, Kusumanchi[cite: 1]<br>GPA / Score: 98.0%[cite: 1]</p>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- CONTACT SECTION -->
 <section id="contact">
-  <h2 class="sec-heading">Let's Connect</h2>
+  <h2 class="sec-heading">Get in Touch</h2>
   <div class="grid-4">
     <a href="mailto:lokeshnidigonda@gmail.com" class="card-box"><b>Email</b><p>lokeshnidigonda@gmail.com</p></a>
     <a href="https://linkedin.com/in/lokeshnidigonda" target="_blank" class="card-box"><b>LinkedIn</b><p>in/lokeshnidigonda</p></a>
-    <a href="https://github.com/lokeshnidigonda" target="_blank" class="card-box"><b>GitHub</b><p>github.com/lokeshnidigonda</p></a>
+    <a href="https://github.com/lokeshnidigonda-loki" target="_blank" class="card-box"><b>GitHub</b><p>github.com/lokeshnidigonda-loki</p></a>
     <a href="https://leetcode.com/u/VSz199ebGu/" target="_blank" class="card-box"><b>LeetCode</b><p>leetcode.com/u/VSz199ebGu/</p></a>
   </div>
 </section>
 
 <footer>&copy; 2026 Nidigonda Lokesh. All rights reserved.</footer>
-
-<script>
-  async function fetchLetterboxdReviews() {
-    const username = 'lokeshnidigonda';
-    const rssUrl = `https://letterboxd.com/${username}/rss/`;
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
-    try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      const container = document.getElementById('letterboxd-feed');
-      container.innerHTML = '';
-
-      if (data.status === 'ok' && data.items.length > 0) {
-        data.items.slice(0, 2).forEach(item => {
-          const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
-          const posterUrl = imgMatch ? imgMatch[1] : '';
-          const cleanReview = item.description.replace(/<[^>]*>?/gm, '').trim();
-
-          const card = document.createElement('div');
-          card.className = 'movie-card';
-          card.innerHTML = `
-            <h3>${item.title}</h3>
-            <p style="margin-top:10px;">"${cleanReview.substring(0, 180)}..."</p>
-            <a href="${item.link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:12px;">Read Full Review →</a>
-          `;
-          container.appendChild(card);
-        });
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }
-  document.addEventListener('DOMContentLoaded', fetchLetterboxdReviews);
-</script>
 
 </body>
 </html>
