@@ -12,14 +12,14 @@
 
 <style>
   :root {
-    --bg: #F7F4EB;
-    --card-bg: #FFFFFF;
-    --text-main: #1A1A1A;
-    --text-muted: #666666;
-    --accent: #C89551;
-    --accent-light: #F2E8D5;
-    --border: #E5DFC9;
-    --dark-btn: #1A1A1A;
+    --bg: #0b0f17;
+    --card-bg: rgba(22, 27, 34, 0.85);
+    --text-main: #f0f6fc;
+    --text-muted: #94a3b8;
+    --accent: #c89551;
+    --accent-light: rgba(200, 149, 81, 0.15);
+    --border: #1e293b;
+    --dark-btn: #c89551;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,8 +41,8 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     display: flex; justify-content: space-between; align-items: center;
     padding: 20px 8%;
-    background: rgba(247, 244, 235, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(11, 15, 23, 0.85);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
   .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.5px; }
@@ -51,15 +51,16 @@
   .nav-links a { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); transition: color 0.2s; }
   .nav-links a:hover { color: var(--text-main); }
   .hire-btn {
-    background: var(--dark-btn); color: #FFF !important;
+    background: var(--dark-btn); color: #0b0f17 !important;
     padding: 10px 22px; border-radius: 999px; font-weight: 700 !important;
   }
 
-  /* HERO SECTION */
+  /* HERO SECTION WITH CHARMINAR DESK BACKGROUND */
   .hero {
     min-height: 100vh; padding: 140px 8% 60px;
     display: flex; align-items: center; justify-content: space-between;
     gap: 40px; position: relative;
+    background: linear-gradient(180deg, rgba(11, 15, 23, 0.75) 0%, rgba(11, 15, 23, 0.92) 100%), url('BackGroundImage.png') center/cover no-repeat fixed;
   }
   .hero-left { flex: 1.2; max-width: 650px; }
   .eyebrow-tag {
@@ -89,33 +90,34 @@
 
   .btn-group { display: flex; gap: 16px; align-items: center; }
   .btn-main {
-    background: var(--dark-btn); color: #FFF;
+    background: var(--dark-btn); color: #0b0f17;
     padding: 14px 32px; border-radius: 999px; font-weight: 700;
     font-size: 0.95rem; transition: transform 0.2s;
   }
   .btn-main:hover { transform: translateY(-2px); }
   .btn-sec {
-    background: transparent; color: var(--text-main);
+    background: rgba(255,255,255,0.05); color: var(--text-main);
     padding: 14px 32px; border-radius: 999px; font-weight: 700;
-    font-size: 0.95rem; border: 1px solid var(--border);
+    font-size: 0.95rem; border: 1px solid var(--border); backdrop-filter: blur(5px);
   }
 
-  /* HERO RIGHT IMAGE STYLING */
+  /* HERO PORTRAIT CARD */
   .hero-right { flex: 0.9; position: relative; display: flex; justify-content: center; }
   .portrait-card {
     position: relative; width: 340px; height: 420px;
-    background: #EADECA; border-radius: 30px;
-    border: 2px solid var(--border); overflow: hidden;
+    background: var(--card-bg); border-radius: 30px;
+    border: 1px solid var(--border); overflow: hidden;
+    backdrop-filter: blur(10px);
   }
   .portrait-card img {
     width: 100%; height: 100%; object-fit: cover; object-position: top center;
   }
   .status-badge {
     position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: #FFF; padding: 8px 18px; border-radius: 999px;
+    background: #0b0f17; padding: 8px 18px; border-radius: 999px;
     border: 1px solid var(--border); display: flex; align-items: center; gap: 8px;
-    font-size: 0.8rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    white-space: nowrap;
+    font-size: 0.8rem; font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    white-space: nowrap; color: var(--text-main);
   }
   .status-dot { width: 8px; height: 8px; background: #22C55E; border-radius: 50%; }
 
@@ -125,19 +127,21 @@
 
   /* CARDS GRID */
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
   
   .card-box {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 28px;
+    border-radius: 20px; padding: 28px; backdrop-filter: blur(10px);
   }
-  .card-box h3 { font-size: 1.1rem; margin-bottom: 12px; }
+  .card-box h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--accent); }
   .card-box p { color: var(--text-muted); font-size: 0.9rem; }
 
   /* PROJECT CARDS */
   .project-card {
     background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 24px; overflow: hidden; margin-bottom: 30px;
+    backdrop-filter: blur(10px);
   }
   .project-img { width: 100%; height: 320px; object-fit: cover; }
   .project-content { padding: 32px; }
@@ -145,20 +149,28 @@
   /* CINEMA REVIEWS */
   .movie-card {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 20px;
+    border-radius: 20px; padding: 20px; display: flex; gap: 20px; align-items: flex-start;
   }
+  .movie-poster {
+    width: 100px; height: 150px; border-radius: 12px; object-fit: cover; flex-shrink: 0;
+    border: 1px solid var(--border);
+  }
+  .movie-info h3 { font-size: 1.2rem; margin-bottom: 8px; color: var(--text-main); }
+  .movie-info p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.5; }
 
   footer {
     text-align: center; padding: 40px; color: var(--text-muted);
-    font-size: 0.85rem; border-top: 1px solid var(--border);
+    font-size: 0.85rem; border-top: 1px solid var(--border); background: #0b0f17;
   }
 
   @media(max-width: 900px) {
     .hero { flex-direction: column; text-align: center; padding-top: 120px; }
     .hero-title { font-size: 3rem; }
-    .grid-4, .grid-2 { grid-template-columns: 1fr; }
+    .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
     .hero-left { max-width: 100%; }
     .eyebrow-tag { justify-content: center; }
+    .movie-card { flex-direction: column; }
+    .movie-poster { width: 100%; height: 220px; }
   }
 </style>
 </head>
@@ -169,6 +181,7 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
     <a href="#cinema">Cinema</a>
     <a href="#contact">Contact</a>
     <a href="mailto:lokeshnidigonda@gmail.com" class="hire-btn">Hire Me</a>
@@ -245,11 +258,33 @@
   </div>
 </section>
 
-<!-- AUTOMATED LETTERBOXD FEED -->
+<!-- EDUCATION -->
+<section id="education">
+  <h2 class="sec-heading">Education</h2>
+  <div class="grid-3">
+    <div class="card-box">
+      <h3>2022 — 2026</h3>
+      <h4 style="color:var(--text-main); font-weight:700;">B.Tech, CSE (Data Science)</h4>
+      <p><b>Marri Laxman Reddy Institute of Technology and Management (MLRITM)</b>, Hyderabad<br>CGPA: 7.59 / 10.0</p>
+    </div>
+    <div class="card-box">
+      <h3>2020 — 2022</h3>
+      <h4 style="color:var(--text-main); font-weight:700;">Intermediate (MPC)</h4>
+      <p><b>Sri Chaitanya Junior College</b>, Hyderabad<br>Percentage: 96.0%</p>
+    </div>
+    <div class="card-box">
+      <h3>2019 — 2020</h3>
+      <h4 style="color:var(--text-main); font-weight:700;">SSC (Secondary School)</h4>
+      <p><b>Zilla Parishad High School</b>, Kusumanchi<br>GPA / Score: 98.0%</p>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATED LETTERBOXD FEED FOR USER: nlokesh -->
 <section id="cinema">
   <h2 class="sec-heading">Latest Cinema <i>Reviews</i></h2>
   <div class="grid-2" id="letterboxd-feed">
-    <p>Loading live reviews from Letterboxd...</p>
+    <p style="color:var(--text-muted);">Loading live reviews from Letterboxd...</p>
   </div>
 </section>
 
@@ -268,7 +303,8 @@
 
 <script>
   async function fetchLetterboxdReviews() {
-    const username = 'lokeshnidigonda';
+    // Exact handle from Letterboxd account screenshot
+    const username = 'nlokesh';
     const rssUrl = `https://letterboxd.com/${username}/rss/`;
     const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
 
@@ -287,15 +323,21 @@
           const card = document.createElement('div');
           card.className = 'movie-card';
           card.innerHTML = `
-            <h3>${item.title}</h3>
-            <p style="margin-top:10px;">"${cleanReview.substring(0, 180)}..."</p>
-            <a href="${item.link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:12px;">Read Full Review →</a>
+            ${posterUrl ? `<img class="movie-poster" src="${posterUrl}" alt="${item.title}">` : ''}
+            <div class="movie-info">
+              <h3>${item.title}</h3>
+              <p style="margin-top:6px;">"${cleanReview.substring(0, 160)}..."</p>
+              <a href="${item.link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:10px; font-size:0.85rem;">Read Full Review on Letterboxd →</a>
+            </div>
           `;
           container.appendChild(card);
         });
+      } else {
+        container.innerHTML = '<p style="color:var(--text-muted);">No public Letterboxd entries found.</p>';
       }
     } catch (e) {
       console.error(e);
+      document.getElementById('letterboxd-feed').innerHTML = '<p style="color:var(--text-muted);">Unable to fetch Letterboxd reviews.</p>';
     }
   }
   document.addEventListener('DOMContentLoaded', fetchLetterboxdReviews);
