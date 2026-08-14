@@ -303,43 +303,77 @@
 
 <script>
   async function fetchLetterboxdReviews() {
-    // Exact handle from Letterboxd account screenshot
-    const username = 'nlokesh';
-    const rssUrl = `https://letterboxd.com/${username}/rss/`;
-    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+    const username = 'lokeshnidigonda';
+    const rssUrl = `https://letterboxd.com/${username}/rss/?t=${Date.now()}`;
+    
+    // Primary and fallback real-time CORS proxies
+    const proxies = [
+      `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`,
+      `https://corsproxy.io/?${encodeURIComponent(rssUrl)}`
+    ];
+
+    let xmlText = null;
+
+    // Try primary proxy, fallback to secondary if needed
+    for (const proxy of proxies) {
+      try {
+        const response = await fetch(proxy);
+        if (response.ok) {
+          xmlText = await response.text();
+          break;
+        }
+      } catch (err) {
+        console.warn(`Proxy ${proxy} failed, trying next...`);
+      }
+    }
+
+    const container = document.getElementById('letterboxd-feed');
+
+    if (!xmlText) {
+      container.innerHTML = '<p style="color:var(--text-muted);">Unable to load live Letterboxd reviews.</p>';
+      return;
+    }
 
     try {
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      const container = document.getElementById('letterboxd-feed');
-      container.innerHTML = '';
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+      const items = xmlDoc.querySelectorAll('item');
 
-      if (data.status === 'ok' && data.items.length > 0) {
-        data.items.slice(0, 2).forEach(item => {
-          const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
+      if (items.length > 0) {
+        container.innerHTML = ''; // Clear placeholder
+
+        // Renders up to the 4 latest reviews
+        Array.from(items).slice(0, 4).forEach(item => {
+          const title = item.querySelector('title')?.textContent || '';
+          const link = item.querySelector('link')?.textContent || '#';
+          const description = item.querySelector('description')?.textContent || '';
+
+          // Extract movie poster and clean review text
+          const imgMatch = description.match(/<img[^>]+src="([^">]+)"/);
           const posterUrl = imgMatch ? imgMatch[1] : '';
-          const cleanReview = item.description.replace(/<[^>]*>?/gm, '').trim();
+          const cleanReview = description.replace(/<[^>]*>?/gm, '').trim();
 
           const card = document.createElement('div');
           card.className = 'movie-card';
           card.innerHTML = `
-            ${posterUrl ? `<img class="movie-poster" src="${posterUrl}" alt="${item.title}">` : ''}
+            ${posterUrl ? `<img class="movie-poster" src="${posterUrl}" alt="${title}">` : ''}
             <div class="movie-info">
-              <h3>${item.title}</h3>
-              <p style="margin-top:6px;">"${cleanReview.substring(0, 160)}..."</p>
-              <a href="${item.link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:10px; font-size:0.85rem;">Read Full Review on Letterboxd →</a>
+              <h3>${title}</h3>
+              <p style="margin-top:8px;">"${cleanReview.substring(0, 160)}..."</p>
+              <a href="${link}" target="_blank" style="color:var(--accent); font-weight:700; display:inline-block; margin-top:10px; font-size:0.85rem;">Read Full Review on Letterboxd →</a>
             </div>
           `;
           container.appendChild(card);
         });
       } else {
-        container.innerHTML = '<p style="color:var(--text-muted);">No public Letterboxd entries found.</p>';
+        container.innerHTML = '<p style="color:var(--text-muted);">No reviews found on Letterboxd.</p>';
       }
     } catch (e) {
-      console.error(e);
-      document.getElementById('letterboxd-feed').innerHTML = '<p style="color:var(--text-muted);">Unable to fetch Letterboxd reviews.</p>';
+      console.error("Parsing error:", e);
+      container.innerHTML = '<p style="color:var(--text-muted);">Error rendering reviews.</p>';
     }
   }
+
   document.addEventListener('DOMContentLoaded', fetchLetterboxdReviews);
 </script>
 
